@@ -16,18 +16,18 @@ import {
 const ConfirmRemoveDialog = ({ open, onClose, onConfirm, productName }) => {
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-      <DialogTitle>Confirm Removal</DialogTitle>
+      <DialogTitle>Xác nhận xóa</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          Are you sure you want to remove <strong>{productName}</strong> from your cart? This action cannot be undone.
+          Bạn có chắc muốn xóa <strong>{productName}</strong> khỏi giỏ hàng?
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="inherit">
-          Cancel
+          Hủy
         </Button>
         <Button onClick={onConfirm} color="error" variant="contained">
-          Remove
+          Xóa
         </Button>
       </DialogActions>
     </Dialog>
@@ -64,11 +64,11 @@ const ItemContent = ({
     if (selectedProductId) {
       try {
         deleteProductFromCart(productId); 
-        toast.success(`${productName} removed from cart!`); 
+        toast.success(`Đã xóa ${productName} khỏi giỏ hàng`); 
         const listCartItems = handleUpdateCartItem()
         dispatch({type: 'DELETE_CART', payload: listCartItems})
       } catch (error) {
-        toast.error("Failed to remove item from cart");
+        toast.error("Không thể xóa sản phẩm khỏi giỏ hàng");
         console.error("Delete error:", error);
       }
       setDialogOpen(false);
@@ -128,7 +128,7 @@ const ItemContent = ({
             className="flex items-center font-semibold space-x-2 px-4 py-1 text-xs border-rose-600 text-rose-600 rounded-md hover:bg-red-50 transition-colors duration-200"
           >
             <FaTrash size={20} className="text-rose-600" />
-            Remove from cart
+            Xóa khỏi giỏ
           </button>
         </div>
       </div>

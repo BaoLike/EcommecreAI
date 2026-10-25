@@ -12,9 +12,9 @@ const Checkout = () => {
 
 
     const steps = [
-        "Addtress",
-        "Order Summary",
-        "Payment Method",
+        "Địa chỉ",
+        "Tóm tắt đơn hàng",
+        "Thanh toán",
     ];
 
 
@@ -35,7 +35,7 @@ const Checkout = () => {
                 {activeStep === 0 && <AddressInfor onNext={() => setActiveStep(1)} />}
                 {activeStep === 1 && <OrderSummary onNext={() => setActiveStep(2)} onBack={() => setActiveStep(0)}/>}
                 {activeStep === 2 && <PaymentMethodComponent onNext={() => setActiveStep(3)}/>}
-                {activeStep === 3 && <div>Payment Component</div>}
+                {activeStep === 3 && <div>Đang xử lý thanh toán</div>}
             </div>
         </div>
     )

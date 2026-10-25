@@ -6,7 +6,7 @@ function shapeUser(raw) {
   return {
     id: raw.id ?? raw.userId ?? 0,
     username: raw.username ?? "",
-    name: raw.name ?? raw.fullName ?? raw.username ?? "User",
+    name: raw.name ?? raw.fullName ?? raw.username ?? "Người dùng",
     email: raw.email ?? "",
     phone: raw.phone ?? "",
     gender: raw.gender ?? "",
@@ -101,7 +101,7 @@ export default function UserProfile() {
       const updated = await updateProfile(payload);
       setMe(shapeUser(updated));
       setIsEdit(false);
-      setNote("Profile updated successfully.");
+      setNote("Cập nhật hồ sơ thành công.");
       setTimeout(() => setNote(""), 2000);
     } catch {
       setNote("Không thể lưu hồ sơ. Vui lòng thử lại.");
@@ -110,24 +110,24 @@ export default function UserProfile() {
     }
   };
 
-  if (loading) return <div className="p-6">Loading profile…</div>;
+  if (loading) return <div className="p-6">Đang tải hồ sơ…</div>;
 
   return (
     <div className="mx-auto max-w-5xl p-6">
-      <h1 className="text-3xl font-bold">User Profile</h1>
-      <p className="text-gray-500 mt-1">Your personal information</p>
+      <h1 className="text-3xl font-bold">Hồ sơ cá nhân</h1>
+      <p className="text-gray-500 mt-1">Thông tin tài khoản của bạn</p>
 
       <div className="mt-4 border-b">
         <div className="py-2 -mb-px inline-block border-b-2 border-black font-semibold text-sm">
-          Overview
+          Tổng quan
         </div>
       </div>
 
       <div className="mt-6 rounded-2xl border shadow-sm p-6">
         <div className="mb-6">
-          <div className="text-xl font-semibold">Personal Information</div>
+          <div className="text-xl font-semibold">Thông tin cá nhân</div>
           <div className="text-gray-500 text-sm">
-            Details of your account in the system
+            Chi tiết tài khoản trên hệ thống
           </div>
         </div>
 
@@ -164,9 +164,9 @@ export default function UserProfile() {
                 setNote("");
               }}
               className="px-4 py-2 rounded-md border hover:bg-gray-50"
-              title="Edit profile"
+              title="Chỉnh sửa hồ sơ"
             >
-              Edit
+              Sửa
             </button>
           ) : (
             <div className="flex gap-2 items-center">
@@ -174,17 +174,17 @@ export default function UserProfile() {
                 onClick={onSave}
                 disabled={saving}
                 className="px-4 py-2 rounded-md bg-black text-white disabled:opacity-60"
-                title="Save changes"
+                title="Lưu thay đổi"
               >
-                {saving ? "Saving..." : "Save"}
+                {saving ? "Đang lưu..." : "Lưu"}
               </button>
               <button
                 onClick={exitEdit}
                 disabled={saving}
                 className="px-4 py-2 rounded-md border hover:bg-gray-50"
-                title="Cancel editing"
+                title="Hủy chỉnh sửa"
               >
-                Cancel
+                Hủy
               </button>
             </div>
           )}
@@ -193,25 +193,25 @@ export default function UserProfile() {
         {note && <p aria-live="polite" className={`mb-5 text-sm ${note.startsWith("Không thể") ? "text-red-700" : "text-green-700"}`}>{note}</p>}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
-          <ReadonlyField label="Full name" value={me?.name} />
-          <ReadonlyField label="Username" value={me?.username} />
+          <ReadonlyField label="Họ và tên" value={me?.name} />
+          <ReadonlyField label="Tên đăng nhập" value={me?.username} />
 
           
           <ReadonlyOrTextIfEmpty
-            label="Gender"
+            label="Giới tính"
             originalValue={me?.gender}
             isEdit={isEdit}
             value={form.gender}
             onChange={(v) => setForm((f) => ({ ...f, gender: v }))}
-            placeholder="Enter gender"
+            placeholder="Nhập giới tính"
           />
           <ReadonlyOrTextIfEmpty
-            label="Phone"
+            label="Số điện thoại"
             originalValue={me?.phone}
             isEdit={isEdit}
             value={form.phone}
             onChange={(v) => setForm((f) => ({ ...f, phone: v }))}
-            placeholder="Enter phone number"
+            placeholder="Nhập số điện thoại"
           />
           <ReadonlyOrTextIfEmpty
             label="Email"
@@ -220,7 +220,7 @@ export default function UserProfile() {
             value={form.email}
             onChange={(v) => setForm((f) => ({ ...f, email: v }))}
             type="email"
-            placeholder="Enter email"
+            placeholder="Nhập email"
           />
         </div>
       </div>

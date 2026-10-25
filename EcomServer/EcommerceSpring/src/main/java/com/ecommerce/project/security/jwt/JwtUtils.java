@@ -34,10 +34,14 @@ public class JwtUtils {
     private String jwtCookie;
 
     @Value("${spring.app.jwtCookieSecure:true}")
-    private boolean jwtCookieSecure;
+    private String jwtCookieSecure;
 
     @Value("${spring.app.jwtCookieSameSite:Lax}")
     private String jwtCookieSameSite;
+
+    private boolean isCookieSecure() {
+        return Boolean.parseBoolean(jwtCookieSecure);
+    }
 
     @PostConstruct
     void validateJwtSecret() {
@@ -69,7 +73,7 @@ public class JwtUtils {
         ResponseCookie cookie = ResponseCookie.from(jwtCookie, jwt).path("/")
                 .maxAge(Duration.ofMillis(jwtExpirationMs))
                 .httpOnly(true)
-                .secure(jwtCookieSecure)
+                .secure(isCookieSecure())
                 .sameSite(jwtCookieSameSite)
                 .build();
         return cookie;
@@ -77,7 +81,7 @@ public class JwtUtils {
     public ResponseCookie getCleanCookie() {
         ResponseCookie cookie = ResponseCookie.from(jwtCookie, "").path("/").maxAge(Duration.ZERO)
                 .httpOnly(true)
-                .secure(jwtCookieSecure)
+                .secure(isCookieSecure())
                 .sameSite(jwtCookieSameSite)
                 .build();
         return cookie;

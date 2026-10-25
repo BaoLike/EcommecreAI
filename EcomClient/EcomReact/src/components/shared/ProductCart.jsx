@@ -106,7 +106,7 @@ const ProductCart = ({
                     })}
                     disabled={!isAvailable || btnLoader}>
                         <FaShoppingCart className="mr-2"/>
-                        {isAvailable ? "Add to cart" : "Stock out"}
+                        {isAvailable ? "Thêm vào giỏ" : "Hết hàng"}
                     </button>
                 </div>
                 

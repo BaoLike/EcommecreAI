@@ -58,12 +58,12 @@ function ProductViewModal({open, setOpen, product, isAvailable}) {
 
                                     {isAvailable ? (
                                         <Status
-                                                text='In Stock'
+                                                text='Còn hàng'
                                                 icon={MdDone}
                                                 bg='bg-teal-200'
                                                 color='text-teal-900'/>
                                     ) : (
-                                        <Status text='Out-Of-Stock'
+                                        <Status text='Hết hàng'
                                                 icon={MdClose}
                                                 bg='bg-rose-200'
                                                 color='text-rose-700'/>
@@ -76,7 +76,7 @@ function ProductViewModal({open, setOpen, product, isAvailable}) {
 
                         <div className='px-6 py-4 flex justify-end gap-4'>
                             <button onClick={() => setOpen(false)} type="button" className='px-4 py-2 text-sm font-semibold test-slate-700 border border-slate-700 hover:text-slate-800 hover:border-slate-800 rounded-md'>
-                                Close
+                                Đóng
                             </button>
                         </div>
                     </DialogPanel>

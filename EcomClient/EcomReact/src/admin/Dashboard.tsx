@@ -77,7 +77,9 @@ const Dashboard: React.FC = () => {
                 </div>
                 <div className="text-right">
                   <p className="text-sm font-medium text-gray-900">{money.format(order.total)}</p>
-                  <span className="text-xs text-gray-600">{order.status}</span>
+                  <span className="text-xs text-gray-600">{
+                    ({ pending: 'Chờ xử lý', processing: 'Đang xử lý', shipped: 'Đã gửi hàng', delivered: 'Đã giao hàng', cancelled: 'Đã hủy', review_required: 'Cần kiểm tra thanh toán' } as Record<string, string>)[order.status] || order.status
+                  }</span>
                 </div>
               </div>
             ))}

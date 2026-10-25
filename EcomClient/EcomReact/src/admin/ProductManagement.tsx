@@ -94,7 +94,7 @@ const ProductManagement: React.FC = () => {
   }, []);
 
   const handleDeleteProduct = async (productId: number) => {
-    if (window.confirm('Are you sure you want to delete this product?')) {
+    if (window.confirm('Bạn có chắc muốn xóa sản phẩm này?')) {
       try {
         await apiService.deleteProduct(productId);
       setProducts(current => current.filter(product => product.productId !== productId));
@@ -128,15 +128,15 @@ const ProductManagement: React.FC = () => {
       <div className="mb-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Product Management</h1>
-            <p className="text-gray-600">Manage your product inventory and catalog</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Quản lý sản phẩm</h1>
+            <p className="text-gray-600">Quản lý kho và danh mục sản phẩm</p>
           </div>
           <Link
             to="add"
             className="mt-4 sm:mt-0 inline-flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200"
           >
             <Plus className="h-4 w-4 mr-2" />
-            Add Product
+            Thêm sản phẩm
           </Link>
         </div>
       </div>
@@ -148,14 +148,14 @@ const ProductManagement: React.FC = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <input
                 type="text"
-                placeholder="Search products..."
+                placeholder="Tìm sản phẩm..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <div className="text-sm text-gray-500">
-              {filteredProducts.length} of {products.length} products
+              {filteredProducts.length} / {products.length} sản phẩm
             </div>
           </div>
         </div>
@@ -183,9 +183,9 @@ const ProductManagement: React.FC = () => {
                       <p className="text-xs text-gray-500">{product.warrantyMonths || 0} tháng bảo hành</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-medium text-gray-900">Stock: {product.quantity}</p>
+                      <p className="text-sm font-medium text-gray-900">Tồn: {product.quantity}</p>
                       <p className={`text-xs ${product.quantity > 10 ? 'text-green-600' : product.quantity > 0 ? 'text-yellow-600' : 'text-red-600'}`}>
-                        {product.quantity > 10 ? 'In Stock' : product.quantity > 0 ? 'Low Stock' : 'Out of Stock'}
+                        {product.quantity > 10 ? 'Còn hàng' : product.quantity > 0 ? 'Sắp hết' : 'Hết hàng'}
                       </p>
                     </div>
                   </div>
@@ -215,9 +215,9 @@ const ProductManagement: React.FC = () => {
           {filteredProducts.length === 0 && (
             <div className="text-center py-12">
               <Package className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-500 text-lg">No products found</p>
+              <p className="text-gray-500 text-lg">Không có sản phẩm</p>
               <p className="text-gray-400 text-sm mt-1">
-                {searchTerm ? 'Try adjusting your search terms' : 'Start by adding your first product'}
+                {searchTerm ? 'Thử đổi từ khóa tìm kiếm' : 'Hãy thêm sản phẩm đầu tiên'}
               </p>
               {!searchTerm && (
                 <Link
@@ -225,7 +225,7 @@ const ProductManagement: React.FC = () => {
                   className="mt-4 inline-flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200"
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  Add Your First Product
+                  Thêm sản phẩm đầu tiên
                 </Link>
               )}
             </div>

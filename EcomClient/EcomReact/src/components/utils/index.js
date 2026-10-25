@@ -2,23 +2,23 @@ const bannerList = [
     {
     id: 1,
     image: "https://embarkx.com/sample/placeholder.png",
-    title: "Home Comfort",
-    subtitle: "Living Room",
-    description: "Upgrade your space with cozy and stylish sofas",
+    title: "Không gian ấm cúng",
+    subtitle: "Phòng khách",
+    description: "Nâng cấp ngôi nhà với sofa êm ái, đúng gu",
   },
   {
     id: 2,
     image: "https://embarkx.com/sample/placeholder.png",
-    title: "Entertainment Hub",
+    title: "Trung tâm giải trí",
     subtitle: "Smart TV",
-    description: "Experience the latest in home entertainment",
+    description: "Trải nghiệm giải trí tại nhà với công nghệ mới nhất",
   },
   {
     id: 3,
     image: "https://embarkx.com/sample/placeholder.png",
-    title: "Playful Picks",
-    subtitle: "Kids' Clothing",
-    description: "Bright and fun styles for kids, up to 20% off",
+    title: "Lựa chọn vui nhộn",
+    subtitle: "Thời trang trẻ em",
+    description: "Kiểu dáng tươi sáng cho bé, giảm đến 20%",
 }
 ]
 

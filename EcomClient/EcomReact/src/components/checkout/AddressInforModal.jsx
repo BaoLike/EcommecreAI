@@ -17,7 +17,7 @@ export const AddressInforModal = ({isOpen, setIsOpen, children}) => {
             </div>
             {/* <Description>This will permanently deactivate your account</Description> */}
             <div className="flex gap-4">
-              <button onClick={() => setIsOpen(false)}>Cancel</button>
+              <button onClick={() => setIsOpen(false)}>Hủy</button>
             </div>
           </DialogPanel>
         </div>

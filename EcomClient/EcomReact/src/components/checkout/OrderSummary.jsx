@@ -14,10 +14,10 @@ export default function OrderSummary({onNext, onBack}) {
         <table className="w-full">
           <thead>
             <tr className="border-b-2 border-gray-200">
-              <th className="text-left py-4 px-2 font-semibold text-gray-700">Products</th>
-              <th className="text-center py-4 px-2 font-semibold text-gray-700">Quantity</th>
-              <th className="text-right py-4 px-2 font-semibold text-gray-700">Price</th>
-              <th className="text-right py-4 px-2 font-semibold text-gray-700">Total</th>
+              <th className="text-left py-4 px-2 font-semibold text-gray-700">Sản phẩm</th>
+              <th className="text-center py-4 px-2 font-semibold text-gray-700">Số lượng</th>
+              <th className="text-right py-4 px-2 font-semibold text-gray-700">Đơn giá</th>
+              <th className="text-right py-4 px-2 font-semibold text-gray-700">Thành tiền</th>
             </tr>
           </thead>
           <tbody>

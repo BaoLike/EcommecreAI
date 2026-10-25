@@ -95,7 +95,7 @@ const AddProduct: React.FC = () => {
           <label className="block text-sm font-medium">Thương hiệu
             <input maxLength={100} name="brand" value={form.brand} onChange={handleChange} className="mt-1 w-full rounded border p-2" />
           </label>
-          <label className="block text-sm font-medium">Model
+          <label className="block text-sm font-medium">Mẫu mã
             <input maxLength={150} name="model" value={form.model} onChange={handleChange} className="mt-1 w-full rounded border p-2" />
           </label>
           <label className="block text-sm font-medium">Giá (VND) *

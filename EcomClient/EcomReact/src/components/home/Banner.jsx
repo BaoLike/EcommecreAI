@@ -32,7 +32,7 @@ const Banner = () => {
                                         <p className='text-white font-bold mt-4'>{item.description}</p>
                                         <Link className='mt-6 inline-block bg-black text-white py-2 px-4 rounded hover:bg-gray-800'
                                               to="/products">
-                                            Shop
+                                            Mua ngay
                                         </Link>
                                     </div>
                                 </div>

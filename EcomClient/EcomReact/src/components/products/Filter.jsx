@@ -72,7 +72,7 @@ const Filter = ({categories}) => {
         <div className="flex lg:flex-row flex-col-reverse lg:justify-between justify-center items-center gap-4 ">
             <div className="relative flex items-center 2xl:w-[450px] sm:w-[420px] w-full">
                 <input type="text" 
-                       placeholder="Search Products"
+                       placeholder="Tìm sản phẩm"
                        value={searchTerm}
                        onChange={(e) => setSearchTerm(e.target.value)}
                        className="border border-gray-400 text-slate-800 rounded-md py-2 pl-10 pr-4 w-full focus:outline-none focus:right-2 focus:ring-[#1976d2]"/>
@@ -85,21 +85,21 @@ const Filter = ({categories}) => {
                     size="small"
                     className="text-slate-800 border-slate-700"
                 >
-                    <InputLabel id="category-select-label">Category</InputLabel>
+                    <InputLabel id="category-select-label">Danh mục</InputLabel>
                     <Select labelId="category-select-label" value={category} onChange={handleCategoryChange}
-                            label="Category"
+                            label="Danh mục"
                             className="min-w-[120px] text-slate-800 border-slate-700">
-                                <MenuItem value="all"> All</MenuItem>
+                                <MenuItem value="all">Tất cả</MenuItem>
                                 {categories.map((item) =>{
                                     return <MenuItem value={item.categoryName} key={item.categoryId}>{item.categoryName}</MenuItem>
                                 })}
                             </Select>
                 </FormControl>
 
-                <Tooltip title="Sorted by price: asc">
+                <Tooltip title={sortOrder === "asc" ? "Sắp xếp giá tăng dần" : "Sắp xếp giá giảm dần"}>
                     <Button variant="contained" color="primary" className="flex items-center gap-2 h-10 "
                         onClick={onChangeSortOrder}>
-                        Sort By
+                        Giá
                         {sortOrder === 'asc' ? (<FiArrowUp size={20}/>) : (<FiArrowDown size={20}/>)}
                         
                     </Button>
@@ -108,7 +108,7 @@ const Filter = ({categories}) => {
                 <button className="flex items-center gap-2 bg-rose-900 text-white px-3 py-2 rounded-md transition duration-300 ease-in shadow-md focus:outline-none"
                 onClick={handleClearFilters}>
                     <FiRefreshCw className="font-semibold" size={16}></FiRefreshCw>
-                    <span className="font-semibold">Clear Filter</span>
+                    <span className="font-semibold">Xóa bộ lọc</span>
                 </button>
             </div>
         </div>

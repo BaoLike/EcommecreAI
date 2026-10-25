@@ -85,7 +85,9 @@ const OrderHistory = () => {
   const getStatusText = (status) => {
     const statusTexts = {
       PENDING: 'Chờ xử lý',
+      SUCCESS: 'Đã thanh toán',
       PROCESSING: 'Đang xử lý',
+      SHIPPING: 'Đang giao hàng',
       SHIPPED: 'Đã gửi hàng',
       DELIVERED: 'Đã giao hàng',
       CANCELED: 'Đã hủy',

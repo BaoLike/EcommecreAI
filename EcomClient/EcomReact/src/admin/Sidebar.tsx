@@ -10,10 +10,10 @@ import {
 
 const Sidebar: React.FC = () => {
   const navItems = [
-    { to: 'dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-    { to: 'admin/orders', icon: ShoppingCart, label: 'Orders' },
-    { to: 'admin/products', icon: Package, label: 'Products' },
-    { to: 'admin/products/add', icon: Plus, label: 'Add Product' },
+    { to: 'dashboard', icon: LayoutDashboard, label: 'Tổng quan' },
+    { to: 'admin/orders', icon: ShoppingCart, label: 'Đơn hàng' },
+    { to: 'admin/products', icon: Package, label: 'Sản phẩm' },
+    { to: 'admin/products/add', icon: Plus, label: 'Thêm sản phẩm' },
   ];
 
   return (
@@ -21,7 +21,7 @@ const Sidebar: React.FC = () => {
       <div className="p-6 border-b border-gray-200">
         <div className="flex items-center space-x-3">
           <Store className="h-8 w-8 text-blue-600" />
-          <h1 className="text-xl font-bold text-gray-900">Admin Panel</h1>
+          <h1 className="text-xl font-bold text-gray-900">Quản trị</h1>
         </div>
       </div>
       <nav className="mt-8">

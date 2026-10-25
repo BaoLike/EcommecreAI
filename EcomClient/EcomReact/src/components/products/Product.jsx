@@ -20,7 +20,7 @@ const Products = () => {
     return (
         <div className="lg:px-14 sm:px-8 px-4 py-14 2xl:w-[90%] 2xl:mx-auto">
             <Filter categories={categories ? categories : []}/>
-            {isLoading ? (<p>It's loading...</p>) :  messageError ? (<div className="flex justify-center items-center h-[200px]">
+            {isLoading ? (<p>Đang tải...</p>) :  messageError ? (<div className="flex justify-center items-center h-[200px]">
                 <FaExclamationTriangle className="text-slate-800  text-3xl mr-2 "/>
                 <span className="text-slate-800 text-lg font-medium">{messageError}</span>
             </div>) : 

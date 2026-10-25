@@ -76,8 +76,8 @@ const OrderManagement: React.FC = () => {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Order Management</h1>
-        <p className="text-gray-600">Manage and track all customer orders</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Quản lý đơn hàng</h1>
+        <p className="text-gray-600">Theo dõi và cập nhật đơn hàng của khách</p>
       </div>
       {pageError && <p role="alert" className="mb-4 rounded-lg bg-red-50 p-3 text-red-700">{pageError}</p>}
 
@@ -89,7 +89,7 @@ const OrderManagement: React.FC = () => {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <input
                   type="text"
-                  placeholder="Search orders..."
+                  placeholder="Tìm đơn hàng..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -102,18 +102,18 @@ const OrderManagement: React.FC = () => {
                   onChange={(e) => setStatusFilter(e.target.value)}
                   className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white"
                 >
-                  <option value="all">All Status</option>
-                  <option value="pending">Pending</option>
-                  <option value="processing">Processing</option>
-                  <option value="shipped">Shipped</option>
-                  <option value="delivered">Delivered</option>
-                  <option value="cancelled">Cancelled</option>
+                  <option value="all">Tất cả trạng thái</option>
+                  <option value="pending">Chờ xử lý</option>
+                  <option value="processing">Đang xử lý</option>
+                  <option value="shipped">Đã gửi hàng</option>
+                  <option value="delivered">Đã giao hàng</option>
+                  <option value="cancelled">Đã hủy</option>
                   <option value="review_required">Cần kiểm tra thanh toán</option>
                 </select>
               </div>
             </div>
             <div className="text-sm text-gray-500">
-              {filteredOrders.length} of {orders.length} orders
+              {filteredOrders.length} / {orders.length} đơn hàng
             </div>
           </div>
         </div>
@@ -123,22 +123,22 @@ const OrderManagement: React.FC = () => {
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Order ID
+                  Mã đơn
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Customer
+                  Khách hàng
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Total
+                  Tổng tiền
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Status
+                  Trạng thái
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Date
+                  Ngày
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
+                  Thao tác
                 </th>
               </tr>
             </thead>
@@ -163,16 +163,16 @@ const OrderManagement: React.FC = () => {
                       onChange={(e) => handleStatusUpdate(order.id, e.target.value)}
                       className={`text-xs font-medium px-3 py-1 rounded-full border-0 focus:ring-2 focus:ring-offset-1 ${getStatusColor(order.status)}`}
                     >
-                      <option value="pending">Pending</option>
-                      <option value="processing">Processing</option>
-                      <option value="shipped">Shipped</option>
-                      <option value="delivered">Delivered</option>
-                      <option value="cancelled">Cancelled</option>
+                      <option value="pending">Chờ xử lý</option>
+                      <option value="processing">Đang xử lý</option>
+                      <option value="shipped">Đã gửi hàng</option>
+                      <option value="delivered">Đã giao hàng</option>
+                      <option value="cancelled">Đã hủy</option>
                       <option value="review_required">Cần kiểm tra thanh toán</option>
                     </select>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {new Date(order.orderDate).toLocaleDateString()}
+                    {new Date(order.orderDate).toLocaleDateString('vi-VN')}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     <div className="flex space-x-2">
@@ -187,9 +187,9 @@ const OrderManagement: React.FC = () => {
 
         {filteredOrders.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">No orders found</p>
+            <p className="text-gray-500 text-lg">Không có đơn hàng</p>
             <p className="text-gray-400 text-sm mt-1">
-              {searchTerm || statusFilter !== 'all' ? 'Try adjusting your search or filters' : 'Orders will appear here when customers make purchases'}
+              {searchTerm || statusFilter !== 'all' ? 'Thử đổi từ khóa hoặc bộ lọc' : 'Đơn hàng sẽ hiện khi khách đặt mua'}
             </p>
           </div>
         )}

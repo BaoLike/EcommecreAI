@@ -36,28 +36,28 @@ const Navbar = () => {
                 <li className="font-[500] transition-all duration-150">
                     <Link className={`${path === "/" ? "text-white font-semibold" : "text-gray-200"}`}
                           to="/">
-                        Home
+                        Trang chủ
                     </Link>
                 </li>
 
                 <li className="font-[500] transition-all duration-150">
                     <Link className={`${path === "/products" ? "text-white font-semibold" : "text-gray-200"}`}
                           to="/products">
-                        Products
+                        Sản phẩm
                     </Link>
                 </li>
 
                 <li className="font-[500] transition-all duration-150">
                     <Link className={`${path === "/about" ? "text-white font-semibold" : "text-gray-200"}`}
                           to="/about">
-                        About
+                        Giới thiệu
                     </Link>
                 </li>
 
                 <li className="font-[500] transition-all duration-150">
                     <Link className={`${path === "/contact" ? "text-white font-semibold" : "text-gray-200"}`}
                           to="/contact">
-                        Contact
+                        Liên hệ
                     </Link>
                 </li>
 
@@ -91,7 +91,7 @@ const Navbar = () => {
                                     transition duration-300 ease-in-out transform"
                           to="/login">
                         <FaSignInAlt />
-                        <span>Login</span>
+                        <span>Đăng nhập</span>
                     </Link>
                 </li>
                 )}

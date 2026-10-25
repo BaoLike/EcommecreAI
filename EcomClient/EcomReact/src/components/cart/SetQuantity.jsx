@@ -8,7 +8,7 @@ const SetQuantity = ({
 }) => {
     return (
         <div className="flex gap-8 items-center">
-        {cartCounter ? null : <div className="font-semibold">QUANTITY</div>}
+        {cartCounter ? null : <div className="font-semibold">SỐ LƯỢNG</div>}
         <div className="flex md:flex-row flex-col gap-4  items-center lg:text-[22px] text-sm">
             <button disabled={quantity<=1}
                 className={btnStyles}

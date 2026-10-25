@@ -21,7 +21,7 @@ export const fetchProducts = (queryString) => async (dispatch) => {
         console.log(error);
         dispatch({
             type:"IS_ERROR",
-            payload: error?.response?.data?.message || 'failed to fetch products data',
+            payload: error?.response?.data?.message || 'Không tải được danh sách sản phẩm',
         })
     }
 }
@@ -44,7 +44,7 @@ export const fetchCategories = (queryString) => async (dispatch) => {
         console.log(error);
         dispatch({
             type:"IS_ERROR",
-            payload: error?.response?.data?.message || 'failed to fetch categories data',
+            payload: error?.response?.data?.message || 'Không tải được danh mục sản phẩm',
         })
     }
 }
@@ -54,26 +54,26 @@ export const addToCart = (data, quantity=1, toast) => async (dispatch, getState)
     const getProduct = products.find((item) => item.productId === data.productId);
     const listCartItem = localStorage.getItem('cartItemList') ? JSON.parse(localStorage.getItem('cartItemList')) : [];
     if(listCartItem.some((product) => product.productId === getProduct.productId)){
-        toast.error('This product had already in cart!')
+        toast.error('Sản phẩm này đã có trong giỏ hàng')
         return;
     }
     const isQuantityExist = getProduct.quantity >= quantity;
     if(isQuantityExist){
         try{
-            toast.success(`${data?.productName} added tho the cart`);
+            toast.success(`Đã thêm ${data?.productName} vào giỏ hàng`);
             const productToAdd = { ...getProduct, quantity };
             const updatedCart = [...listCartItem, productToAdd];
             localStorage.setItem('cartItemList', JSON.stringify(updatedCart));
             dispatch({type: 'ADD_CART', payload: updatedCart});
             const reponse = await api.post(`/cart/products/${data.productId}/quantity/${quantity}`);
         }catch(e){
-            toast.error("error when add to cart", e);
+            toast.error("Không thể thêm sản phẩm vào giỏ hàng");
         }
         
         
     }
     else{
-        toast.error("Out of stock")
+        toast.error("Sản phẩm đã hết hàng")
     }
 };
 
@@ -96,7 +96,7 @@ export const increaseCartQuantity = (data, toast, currentQuantity, setCurrentQua
         const response = await api.post(`/card/products/${getProduct.productId}/quantity/add`);
     }
     else{
-        toast.error("Quantity reach to limit")
+        toast.error("Đã đạt số lượng tối đa")
     }
 }
 
@@ -113,11 +113,11 @@ export const authenticateSignInUser = (sendData, toast, reset, navigate, setLoad
         await fetchCart();
         await dispatch(fetchLocationsAddress());
         reset()
-        toast.success("Login success");
+        toast.success("Đăng nhập thành công");
         navigate("/")
     } catch (error) {
         console.log(error);
-        toast.error(error?.response?.data?.message || "Internal server error")
+        toast.error(error?.response?.data?.message || "Lỗi máy chủ, vui lòng thử lại")
     } finally {
         setLoader(false)
     }
@@ -129,11 +129,11 @@ export const registerNewUser = (sendData, toast, reset, navigate, setLoader) => 
         const { username, email, password } = sendData;
         const {data} = await api.post("/auth/signup", { username, email, password })
         reset()
-        toast.success(data?.message || "Register Successfully");
+        toast.success(data?.message || "Đăng ký thành công");
         navigate("/login")
     } catch (error) {
         console.log(error);
-        toast.error(error?.response?.data?.message || "Internal server error")
+        toast.error(error?.response?.data?.message || "Lỗi máy chủ, vui lòng thử lại")
     } finally {
         setLoader(false)
     }

@@ -38,7 +38,7 @@ import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 @EnableMethodSecurity
 public class WebSecurityConfig {
     @Value("${spring.app.jwtCookieSecure:true}")
-    private boolean jwtCookieSecure;
+    private String jwtCookieSecure;
 
     @Value("${spring.app.jwtCookieSameSite:Lax}")
     private String jwtCookieSameSite;
@@ -83,7 +83,7 @@ public class WebSecurityConfig {
         CookieCsrfTokenRepository csrfTokenRepository = CookieCsrfTokenRepository.withHttpOnlyFalse();
         csrfTokenRepository.setCookieCustomizer(cookie -> cookie.path("/")
                 .httpOnly(false)
-                .secure(jwtCookieSecure)
+                .secure(Boolean.parseBoolean(jwtCookieSecure))
                 .sameSite(jwtCookieSameSite));
 
         http.cors(Customizer.withDefaults())

@@ -189,10 +189,10 @@ export const AddAddressForm = () => {
             {loaderSubmit ? (
               <>
                 <Spinner/>
-                Loading...
+                Đang lưu...
               </>
             ) : (
-              <>Save</>
+              <>Lưu địa chỉ</>
             )}
           </button>
         </form>

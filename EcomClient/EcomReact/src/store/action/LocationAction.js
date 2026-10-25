@@ -11,7 +11,7 @@ export const fetchAddresses = () => async (dispatch) => {
     dispatch(setAddresses(data));
     
   } catch (error) {
-    dispatch(setError(error?.message || 'Failed to fetch addresses'));
+    dispatch(setError(error?.message || 'Không tải được danh sách địa chỉ'));
     console.error('Error fetching addresses:', error);
   }
 };
@@ -27,7 +27,7 @@ export const createAddress = (addressData) => async (dispatch) => {
     dispatch(fetchAddresses());
     
   } catch (error) {
-    dispatch(setError(error?.message || 'Failed to create address'));
+    dispatch(setError(error?.message || 'Không thể thêm địa chỉ'));
     console.error('Error creating address:', error);
   }
 };
@@ -43,7 +43,7 @@ export const updateAddressOnServer = (addressId, addressData) => async (dispatch
     dispatch(fetchAddresses());
     
   } catch (error) {
-    dispatch(setError(error?.message || 'Failed to update address'));
+    dispatch(setError(error?.message || 'Không thể cập nhật địa chỉ'));
     console.error('Error updating address:', error);
   }
 };
@@ -59,7 +59,7 @@ export const deleteAddressFromServer = (addressId) => async (dispatch) => {
     dispatch(fetchAddresses());
     
   } catch (error) {
-    dispatch(setError(error?.message || 'Failed to delete address'));
+    dispatch(setError(error?.message || 'Không thể xóa địa chỉ'));
     console.error('Error deleting address:', error);
   }
 };

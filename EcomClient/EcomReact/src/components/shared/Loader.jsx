@@ -1,6 +1,6 @@
 import React from "react";
 
-const Loader = ({ text = "Please wait..." }) => {
+const Loader = ({ text = "Vui lòng đợi..." }) => {
   return (
     <div className="flex flex-col items-center justify-center h-full">
       <div className="w-12 h-12 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>

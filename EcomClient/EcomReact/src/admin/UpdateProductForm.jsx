@@ -73,7 +73,7 @@ const UpdateProductForm = ({ product, onClose, onSubmit }) => {
             <label className="text-sm font-medium">Thương hiệu
               <input maxLength="100" name="brand" value={formData.brand} onChange={handleChange} className="mt-1 w-full rounded border p-2" />
             </label>
-            <label className="text-sm font-medium">Model
+            <label className="text-sm font-medium">Mẫu mã
               <input maxLength="150" name="model" value={formData.model} onChange={handleChange} className="mt-1 w-full rounded border p-2" />
             </label>
             <label className="text-sm font-medium">Giá (VND) *

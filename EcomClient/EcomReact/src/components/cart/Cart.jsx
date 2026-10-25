@@ -38,14 +38,14 @@ const Cart = () => {
                 <div className="flex flex-col items-center mb-12">
                     <h1 className="text-4xl font-bold text-gray-900 flex items-center gap-3">
                         <MdShoppingCart size={36} className="text-gray-700"/>
-                        Your cart
+                        Giỏ hàng
                     </h1>
 
-                    <p className="text-lg text-gray-600 mt-2">Your cart is empty! Go shoping now</p>
+                    <p className="text-lg text-gray-600 mt-2">Giỏ hàng đang trống. Hãy chọn sản phẩm để mua.</p>
                     <Link to="/products"><button className={`bg-blue-500 opacity-100 hover:bg-600
                                         text-white py-2 px-3 rounded-lg items-center transition-colors duration-300 w-50 mt-10 flex  justify-center`}>
                                             <FaShoppingCart className="mr-2"/>
-                                            Go To Product Store
+                                            Đến cửa hàng
                                         </button></Link>
                 </div>
             </div>)
@@ -56,27 +56,27 @@ const Cart = () => {
             <div className="flex flex-col items-center mb-12">
                 <h1 className="text-4xl font-bold text-gray-900 flex items-center gap-3">
                     <MdShoppingCart size={36} className="text-gray-700"/>
-                    Your cart
+                    Giỏ hàng
                 </h1>
 
-                <p className="text-lg text-gray-600 mt-2">All your selected items</p>
+                <p className="text-lg text-gray-600 mt-2">Các sản phẩm bạn đã chọn</p>
             </div>
 
             <div class="grid md:grid-cols-5  grid-cols-4 gap-4 pb-2 semibold items-center">
                 <div className="md:col-span-2 justify-self-start text-lg text-slate-800 lg:ps-4">
-                    Products
+                    Sản phẩm
                 </div>
 
                 <div className="justify-self-center text-lg text-slate-800">
-                    Quantity    
+                    Số lượng
                 </div>
 
                 <div className="justify-self-center text-lg text-slate-800">
-                    Price
+                    Đơn giá
                 </div>
 
                 <div className="justify-self-center text-lg text-slate-800">
-                    Total
+                    Thành tiền
                 </div>  
             </div>
 
@@ -89,11 +89,11 @@ const Cart = () => {
                 <div></div>
                 <div className="flex text-sm gap-1 flex-col">
                     <div className="flex justify-between w-full md:text-lg text-sm font-semibold">
-                        <span>Subtotal</span>
+                        <span>Tạm tính</span>
                         <span>{Math.round(totalPrice*100)/100}</span>
                     </div>
 
-                    <p className="text-slate-500">Taxes and shipping calculated at checkout</p>
+                    <p className="text-slate-500">Phí vận chuyển được tính khi thanh toán</p>
 
                     <Link className="w-full flex justify-end" to="/checkout">
                         <button
@@ -101,14 +101,14 @@ const Cart = () => {
                             className="font-semibold w-[300px] py-2 px-4 rounded-sm bg-customBlue text-white flex items-center justify-center gap-2 hover:text-gray-300 transition duration-500"
                         >
                             <MdShoppingCart size={20}/>
-                            Checkout
+                            Thanh toán
                         </button>
                     </Link>
 
                     
                     <Link className="flex gap-2 items-center mt-2 text-slate-500" to="/products">
                         <MdArrowBack/>
-                        <span>Continue Shoping</span>
+                        <span>Tiếp tục mua sắm</span>
                     </Link>
                 </div>
             </div>

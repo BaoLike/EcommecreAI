@@ -50,7 +50,7 @@ const AddressCard = ({ address, isSelected, onSelect, onDelete }) => {
               onDelete(address.addressId);
             }}
             className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-            aria-label="Delete address"
+            aria-label="Xóa địa chỉ"
           >
             <Trash2 className="w-5 h-5" />
           </button>
@@ -73,7 +73,7 @@ const AddressSelector = ({onNext}) => {
   };
 
   const handleDeleteAddress = async (id) => {
-    if (window.confirm('Are you sure you want to delete this address?')) {
+    if (window.confirm('Bạn có chắc muốn xóa địa chỉ này?')) {
       try {
         await api.delete(`/addresses/${id}`);
         const remaining = addresses.filter(addr => addr.addressId !== id);
@@ -93,7 +93,7 @@ const AddressSelector = ({onNext}) => {
   return (
   <div className="w-full">
     <h1 className="text-3xl font-bold text-gray-800 text-center mb-6">
-      Select Address
+      Chọn địa chỉ giao hàng
     </h1>
 
     <div className="max-h-[500px] overflow-y-auto space-y-4 px-2">
@@ -110,7 +110,7 @@ const AddressSelector = ({onNext}) => {
 
     {addresses.length === 0 && (
       <div className="text-center py-12 text-gray-500">
-        No addresses found. Add your first address to continue.
+        Chưa có địa chỉ. Hãy thêm địa chỉ để tiếp tục.
       </div>
     )}
 
@@ -121,13 +121,13 @@ const AddressSelector = ({onNext}) => {
           console.log('Next clicked, selected address:', selectedAddressId);
           onNext();
           } else {
-          toast.error('Please select an address first');
+          toast.error('Vui lòng chọn địa chỉ giao hàng');
         }
         }}
         className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
         disabled={!selectedAddressId}
       >
-        Next
+        Tiếp tục
       </button>
     </div>
   </div>

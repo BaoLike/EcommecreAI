@@ -62,7 +62,7 @@ const UserMenu = () => {
         <Link to="/profile/order">
             <MenuItem onClick={handleClose} className="flex gap-2">
                 <FaShoppingCart className="text-xl"/>
-                <span className="font-semibold">Order</span>
+                <span className="font-semibold">Đơn hàng</span>
             </MenuItem>
         </Link>
 
@@ -70,7 +70,7 @@ const UserMenu = () => {
             <div className="font-semibold w-full flex gap-2 items-center bg-button-gradient  px-4 py-1  text-white rounded-sm">
                 <IoExitOutline className="text-xl"/>
                 <span className="font-bold text-[16px] mt-1 ">
-                    Logout
+                    Đăng xuất
                 </span>
             </div>
         </MenuItem>
