@@ -86,7 +86,8 @@ services:
     restart: unless-stopped
 
   rag-ingest:
-    image: ecom-ai:local
+    build:
+      context: ./EcomServer/EcomAI
     command: ["python", "-m", "app.ingest"]
     environment:
       AI_RAG_DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/Ecommerce
