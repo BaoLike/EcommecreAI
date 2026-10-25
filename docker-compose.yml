@@ -1,0 +1,119 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: Ecommerce
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Copy .env.example to .env and set POSTGRES_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./EcomServer/EcomAI/sql/001_rag.sql:/docker-entrypoint-initdb.d/10-rag.sql:ro
+      - ./EcomServer/EcomAI/sql/002_memory.sql:/docker-entrypoint-initdb.d/20-memory.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d Ecommerce"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+
+  spring:
+    build:
+      context: ./EcomServer/EcommerceSpring
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/Ecommerce
+      DB_USERNAME: postgres
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      JPA_DDL_AUTO: update
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in .env}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      JWT_COOKIE_SAME_SITE: Lax
+      FRONTEND_URL: ${PUBLIC_ORIGIN:-http://localhost:5173}
+      IMAGE_BASE_URL: ${PUBLIC_ORIGIN:-http://localhost:5173}/images/
+      PROJECT_IMAGE_DIR: /app/images/
+      VNPAY_RETURN_URL: ${PUBLIC_ORIGIN:-http://localhost:5173}/api/payment/vnpay-return
+    volumes:
+      - product-images:/app/images
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:latest
+    volumes:
+      - ollama-data:/root/.ollama
+    restart: unless-stopped
+
+  ollama-init:
+    image: ollama/ollama:latest
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    command: ["sh", "-c", "until ollama list; do sleep 2; done; ollama pull embeddinggemma && ollama pull qwen3:4b"]
+    depends_on:
+      ollama:
+        condition: service_started
+    restart: "no"
+
+  ai:
+    image: ecom-ai:local
+    build:
+      context: ./EcomServer/EcomAI
+    environment:
+      BUSINESS_API_URL: http://spring:8080/api
+      AI_IDENTITY_API_URL: http://spring:8080/api
+      AI_IDENTITY_COOKIE_NAME: baolikeEcom
+      AI_ALLOWED_ORIGINS: ${PUBLIC_ORIGIN:-http://localhost:5173}
+      AI_RAG_DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/Ecommerce
+      AI_MEMORY_DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/Ecommerce
+      LLM_PROVIDER: ollama
+      LLM_BASE_URL: http://ollama:11434/v1
+      LLM_MODEL: qwen3:4b
+      EMBEDDING_BASE_URL: http://ollama:11434/v1
+      EMBEDDING_MODEL: embeddinggemma
+      EMBEDDING_TIMEOUT_SECONDS: "300"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      spring:
+        condition: service_started
+      ollama-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+
+  rag-ingest:
+    image: ecom-ai:local
+    command: ["python", "-m", "app.ingest"]
+    environment:
+      AI_RAG_DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/Ecommerce
+      EMBEDDING_BASE_URL: http://ollama:11434/v1
+      EMBEDDING_MODEL: embeddinggemma
+      EMBEDDING_TIMEOUT_SECONDS: "300"
+    depends_on:
+      ai:
+        condition: service_healthy
+    restart: "no"
+
+  frontend:
+    build:
+      context: ./EcomClient/EcomReact
+      args:
+        VITE_BACKEND_URL: ""
+        VITE_AI_API_URL: ""
+    ports:
+      - "${APP_PORT:-5173}:80"
+    depends_on:
+      spring:
+        condition: service_started
+      rag-ingest:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
+  product-images:
+  ollama-data:
