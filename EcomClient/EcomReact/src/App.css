@@ -1,0 +1,9 @@
+.MuiMenu-paper {
+  max-height: 300px !important;
+  max-width: 300px !important;
+}
+
+.MuiList-root {
+  max-height: 280px !important;
+  overflow-y: auto !important;
+}

@@ -5,3 +5,11 @@
 **/node_modules/
 **/dist/
 *.log
+
+# Local editor, Python runtime, and office lock files
+.idea/
+*.iml
+.venv/
+__pycache__/
+*.py[cod]
+.~lock.*
