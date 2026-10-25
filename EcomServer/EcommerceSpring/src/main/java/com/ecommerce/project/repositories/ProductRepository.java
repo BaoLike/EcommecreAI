@@ -21,8 +21,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpec
 
     Page<Product> findByProductNameLikeIgnoreCase(String keyword, Pageable pageDetails);
 
-    @Query(value = "SELECT p.* FROM product p WHERE COALESCE(p.quantity, 0) > 0 ORDER BY p.discount DESC LIMIT 5", nativeQuery = true)
-    List<Product> findTop5ByOrderByDiscountDesc();
+    List<Product> findTop5ByDemoDataFalseAndQuantityGreaterThanOrderByDiscountDesc(Integer quantity);
 
     boolean existsBySku(String sku);
 

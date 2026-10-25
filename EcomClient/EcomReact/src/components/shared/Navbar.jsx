@@ -1,20 +1,13 @@
 import { Badge } from "@mui/material";
-import { useEffect, useState } from "react";
 import { FaShoppingCart, FaSignInAlt, FaStore } from "react-icons/fa";
-import { RxDragHandleHorizontal } from "react-icons/rx";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import UserMenu from "../UserMenu";
 
 const Navbar = () => {
     const path = useLocation().pathname;
-    const [navbarOpen, setNavbarOpen] = useState(false);
     let user;
-    let quantityItemCart = useSelector((state) => state.carts.quantityCartItems);
-
-    useEffect(()=>{
-        console.log('quantity cart item', quantityItemCart)
-    })
+    const quantityItemCart = useSelector((state) => state.carts.quantityCartItems);
     if(localStorage.getItem("auth") !== null){
         user = JSON.parse(localStorage.getItem("auth"))
     }
@@ -23,38 +16,35 @@ const Navbar = () => {
     }
 
     return (
-        <div className="h-[70px] px-5 bg-custom-gradient text-white z-50 flex  items-center sticky top-0">
-            <div className="lg:px-14 sm:px-8 px-4 w-full flex justify-between">
-                <Link to="/" className="flex items-center text-2xl font-bold">
-                    <FaStore className="mr-2 text-3xl "></FaStore>
-                    <span className="font-[Poppins]">E-Shop</span>
-                </Link>
-            </div>
+        <div className="sticky top-0 z-50 flex min-h-[70px] w-full items-center justify-between gap-6 bg-custom-gradient px-3 text-white sm:px-6">
+            <Link to="/" className="hidden shrink-0 items-center text-2xl font-bold lg:flex">
+                <FaStore className="mr-2 text-3xl" />
+                <span className="font-[Poppins]">E-Shop</span>
+            </Link>
 
-
-            <ul className={`flex gap-4 sm:items-center text-slate-800`}>
-                <li className="font-[500] transition-all duration-150">
+            <ul className="ml-auto flex w-full flex-nowrap items-center justify-between gap-1 whitespace-nowrap text-xs text-slate-800 sm:w-auto sm:justify-end sm:gap-5 sm:text-sm lg:gap-7 lg:text-base">
+                <li className="shrink-0 font-[500] transition-all duration-150">
                     <Link className={`${path === "/" ? "text-white font-semibold" : "text-gray-200"}`}
                           to="/">
                         Trang chủ
                     </Link>
                 </li>
 
-                <li className="font-[500] transition-all duration-150">
+                <li className="shrink-0 font-[500] transition-all duration-150">
                     <Link className={`${path === "/products" ? "text-white font-semibold" : "text-gray-200"}`}
                           to="/products">
                         Sản phẩm
                     </Link>
                 </li>
 
-                <li className="font-[500] transition-all duration-150">
+                <li className="shrink-0 font-[500] transition-all duration-150">
                     <Link className={`${path === "/about" ? "text-white font-semibold" : "text-gray-200"}`}
                           to="/about">
                         Giới thiệu
                     </Link>
                 </li>
 
-                <li className="font-[500] transition-all duration-150">
+                <li className="shrink-0 font-[500] transition-all duration-150">
                     <Link className={`${path === "/contact" ? "text-white font-semibold" : "text-gray-200"}`}
                           to="/contact">
                         Liên hệ
@@ -62,7 +52,7 @@ const Navbar = () => {
                 </li>
 
                 {!user["roles"].includes("ROLE_ADMIN") ? (
-                    <li className="font-[500] transition-all duration-150">
+                    <li className="shrink-0 font-[500] transition-all duration-150">
                     <Link className={`${path === "/cart" ? "text-white font-semibold" : "text-gray-200"}`}
                           to="/cart">
                         <Badge 
@@ -76,22 +66,22 @@ const Navbar = () => {
                         </Badge>
                     </Link>
                     </li>
-                ) : (<li></li>)}
+                ) : null}
                 
 
 
                 {(user && user.id) ? (
-                    <li className="font-[500] transition-all duration-150">
+                    <li className="shrink-0 font-[500] transition-all duration-150">
                         <UserMenu/>
                     </li>
                 ) : (
-                    <li className="font-[500] transition-all duration-150">
-                    <Link className="flex items-center space-x-2 px-4 py-[6px] bg-gradient-to-r from-purple-600 to-red-500
+                    <li className="shrink-0 font-[500] transition-all duration-150">
+                    <Link aria-label="Đăng nhập" className="flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-red-500 px-2 py-[6px]
                                     text-white font-semibold rounded-md shadow-lg hover:from-purple-600 hover:to-red-400
-                                    transition duration-300 ease-in-out transform"
+                                    transition duration-300 ease-in-out transform sm:px-4"
                           to="/login">
                         <FaSignInAlt />
-                        <span>Đăng nhập</span>
+                        <span className="hidden sm:inline">Đăng nhập</span>
                     </Link>
                 </li>
                 )}

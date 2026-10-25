@@ -279,7 +279,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductDTO> getTopDisCountProduct() {
-        List<Product> products = productRepository.findTop5ByOrderByDiscountDesc();
+        List<Product> products = productRepository
+                .findTop5ByDemoDataFalseAndQuantityGreaterThanOrderByDiscountDesc(0);
         return products.stream().map(product -> modelMapper.map(product, ProductDTO.class)).collect(Collectors.toList());
     }
 
